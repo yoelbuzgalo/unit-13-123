@@ -1,0 +1,62 @@
+Unit 12 Practice Problems (Unit 13 Day 1 mini practicum)
+
+The goal of these "mini practica" is to give you practice with coding problems
+similar to those that you will see on the midterm practica. You will be 
+required to solve each problem with minimal assistance. You should use these
+mini-practica as an opportunity to gauge your preparedness for the exams.
+
+You should create all of your required files in this folder along with these
+instructions.
+
+Each mini-practicum counts as a homework assignment. 
+
+================================================================================
+
+0. Note that you have been provided with the array_queue and node_stack modules
+   that provide implementations of the queue and stack data structures that 
+   were discussed in the previous unit. When solving each of the following 
+   problems, choose the correct data structure. Your solution MUST make use of
+   the correct data structure in a significant way. 
+
+
+1. Create a new module named "practice" and define a function named 
+   "reverse_digits" that declares a parameter for an integer. Your function
+   should return an integer with the digits in reverse order.
+
+   Hint: consider casting the integer into a string and back again.
+
+   Example Input    Expected Output
+   1                1
+   34               43
+   1002             2001
+   1000             1
+
+2. In a game of "Hot Potato," contestants stand in a circle and toss a potato 
+   (usually a ball or some other small object) from one person to the next while
+   music plays. When the music stops, the person holding the "potato" is 
+   eliminated. Play continues until there is only one person remaining. 
+   
+   Define a function named "hot_potato" that declares a parameter for a list of
+   names and simulates a game of hot potato. Your similation must meet the 
+   following requirements:
+
+   a. Each "round" shall consist of a random number of 1-5 tosses from one 
+      player to the next.
+   b. When the round stops, the person holding the potato is eliminated.
+   c. Play continues until there is only one player remaining. The last player 
+      is the winner.
+
+   Example Output:
+
+   Bobby tosses the potato to Bruce
+   Bruce tosses the potato to Chris
+   Chris tosses the potato to Dave
+   Dave tosses the potato to Bobby
+   Bobby tosses the potato to Bruce
+   The music stops and Bruce is holding the potato!
+   Chris tosses the potato to Dave
+   The music stops and Dave is holding the potato!
+   Bobby tosses the potato to Chris
+   Chris tosses the potato to Bobby
+   The music stops and Bobby is holding the potato!
+   The game is over! Chris wins the game!

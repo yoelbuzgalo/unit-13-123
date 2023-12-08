@@ -2,6 +2,7 @@ import csv
 import arrays
 import random
 from array_queue import Queue
+from node_stack import Stack
 
 class GroceryItem:
     __slots__ = ['__name', '__weight', '__price']
@@ -63,6 +64,25 @@ class Customer:
         for _ in range(len(self.__cart)):
             conveyor.enqueue(self.__cart.pop())
         return
+    
+    def checkout(self, conveyor):
+        total_price = 0
+        bagged = False
+    
+        while(not conveyor.is_empty()):
+            item = conveyor.dequeue()
+            total_price += item.get_price()
+            for bag in self.__bags:
+                if item < bag.peek():
+                    bag.push(item)
+                    bagged = True
+                    break
+            if not bagged:
+                bag = Stack()
+                bag.push(item)
+                self.__bags.append(bag)
+
+        return total_price
 
 def stock_store(filename):
     stock = dict()
@@ -71,11 +91,14 @@ def stock_store(filename):
             csv_reader = csv.reader(file)
             next(csv_reader)
             for record in csv_reader:
-                stock[record[0]] = GroceryItem(record[0], record[1], record[2])
+                stock[record[0]] = GroceryItem(record[0], int(record[1]), int(record[2]))
         return stock
     except FileNotFoundError:
         print("There was an error trying to open the file")
     return
+
+
+
     
 def main():
     # item_1 = GroceryItem('Banana', 4.08, 1.00)
@@ -92,12 +115,13 @@ def main():
     store = stock_store("./data/groceries.csv")
     customer = Customer(25, store)
     customer.shop(store)
-    print(customer.get_cart())
+    # print(customer.get_cart())
 
     conveyor_belt = Queue()
     customer.unload(conveyor_belt)
     
-    print(conveyor_belt)
+    # print(conveyor_belt)
+    print(customer.checkout(conveyor_belt))
     
     
 

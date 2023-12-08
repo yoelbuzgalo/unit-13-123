@@ -1,6 +1,7 @@
 import csv
 import arrays
 import random
+from array_queue import Queue
 
 class GroceryItem:
     __slots__ = ['__name', '__weight', '__price']
@@ -58,11 +59,10 @@ class Customer:
         for item_name in self.__list:
             self.__cart.add(store[item_name])
 
-    # def add_to_list(self, item_name, index):
-    #     self.__list[index] = item_name
-
-    # def add_to_cart(self, item):
-    #     self.__shopping_cart.add(item)
+    def unload(self, conveyor):
+        for _ in range(len(self.__cart)):
+            conveyor.enqueue(self.__cart.pop())
+        return
 
 def stock_store(filename):
     stock = dict()
@@ -93,6 +93,11 @@ def main():
     customer = Customer(25, store)
     customer.shop(store)
     print(customer.get_cart())
+
+    conveyor_belt = Queue()
+    customer.unload(conveyor_belt)
+    
+    print(conveyor_belt)
     
     
 

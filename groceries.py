@@ -1,4 +1,6 @@
 import csv
+import arrays
+import random
 
 class GroceryItem:
     __slots__ = ['__name', '__weight', '__price']
@@ -36,6 +38,31 @@ class GroceryItem:
     
     def get_price(self):
         return self.__price
+    
+class Customer:
+    __slots__ = ['__list', '__cart', '__bags']
+    def __init__(self, list_size, store):
+        self.__cart = set()
+        self.__bags = list()
+        possible_items = list(store.keys())
+        random.shuffle(possible_items)
+        self.__list = possible_items[:list_size]
+
+    def get_list(self):
+        return self.__list
+    
+    def get_cart(self):
+        return self.__cart
+    
+    def shop(self, store):
+        for item_name in self.__list:
+            self.__cart.add(store[item_name])
+
+    # def add_to_list(self, item_name, index):
+    #     self.__list[index] = item_name
+
+    # def add_to_cart(self, item):
+    #     self.__shopping_cart.add(item)
 
 def stock_store(filename):
     stock = dict()
@@ -62,7 +89,12 @@ def main():
     # print(items)
     # print(sorted(items))
 
-    print(stock_store("./data/groceries.csv"))
+    store = stock_store("./data/groceries.csv")
+    customer = Customer(25, store)
+    customer.shop(store)
+    print(customer.get_cart())
+    
+    
 
 
 if __name__ == "__main__":

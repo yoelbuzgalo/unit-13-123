@@ -83,6 +83,12 @@ class Customer:
                 self.__bags.append(bag)
 
         return total_price
+    
+    def unpack(self):
+        for bag_num in range(len(self.__bags)):
+            print("Bag #", bag_num, sep="")
+            while (not self.__bags[bag_num].is_empty()):
+                print(self.__bags[bag_num].pop())
 
 def stock_store(filename):
     stock = dict()
@@ -122,6 +128,7 @@ def main():
     
     # print(conveyor_belt)
     print(customer.checkout(conveyor_belt))
+    customer.unpack()
     
     
 

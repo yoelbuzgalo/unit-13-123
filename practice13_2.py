@@ -126,7 +126,7 @@ class Exam:
 
 def simulate_grading_process():
     stack_of_exams = Stack()
-    grade_database = Queue()
+    graded_folder = Queue()
     student_names = [
     "Emily Johnson", "Ethan Parker", "Olivia Martinez", "Liam Carter", "Sophia Adams",
     "Noah Thompson", "Isabella Rivera", "Mason Wright", "Ava Hall", "Lucas Mitchell",
@@ -143,16 +143,15 @@ def simulate_grading_process():
         print("\tCompleted:", exam)
     
     print("Grading exams:")
-    list_of_graded = Queue()
     for _ in range(len(stack_of_exams)):
         grade = stack_of_exams.pop()
-        list_of_graded.enqueue(grade)
+        graded_folder.enqueue(grade)
         print("\tGraded:", grade)
 
     print("Entering grades into grade database")
     database = list()
-    for _ in range(len(list_of_graded)):
-        grade = list_of_graded.dequeue()
+    for _ in range(len(graded_folder)):
+        grade = graded_folder.dequeue()
         database.append(grade)
         print("\tEntered:", grade)
     

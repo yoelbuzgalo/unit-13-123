@@ -133,4 +133,22 @@ def test_hash_exam():
     # Analysis
     assert result_1 != result_2
 
+def test_lt_comparator():
+    # Setup
+    exam_1 = practice13_2.Exam('B', 50, 100)
+    exam_2 = practice13_2.Exam('A', 50, 100)
+    exam_3 = practice13_2.Exam('C', 85, 100)
+
+    # Result
+    some_list = [exam_1, exam_2, exam_3]
+    some_list.sort()
+
+    # Analysis
+    assert some_list[0] == exam_2
+    assert some_list[1] == exam_1
+    assert some_list[2] == exam_3
+
+
+
+
 

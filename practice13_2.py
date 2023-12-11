@@ -78,6 +78,15 @@ class Exam:
         self.__total_points = total_points
         self.__total_possible_points = total_possible_points
 
+    def __repr__(self):
+        return self.__name + " " + "("+str(self.get_ratio())+")"
+    
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.__name == other.__name:
+                return True
+        return False
+
     def get_name(self):
         return self.__name
     

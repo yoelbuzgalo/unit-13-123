@@ -95,3 +95,27 @@ def test_exam_ratio():
 
     # Analysis
     assert result == 50
+
+def test_exam_repr():
+    # Setup
+    exam = practice13_2.Exam('Yoel', 500, 1000)
+
+    # Invoke
+    result = str(exam)
+
+    # Analysis
+    assert result == "Yoel (50.0)"
+
+def test_comparison():
+    # Setup
+    exam_1 = practice13_2.Exam('Yoel', 200, 100)
+    exam_2 = practice13_2.Exam('Yoel', 300, 400)
+    exam_3 = practice13_2.Exam('Bruce', 200, 400)
+
+    # Invoke
+    result_1 = exam_1 == exam_2
+    result_2 = exam_3 == exam_1
+
+    # Analysis
+    assert result_1 == True
+    assert result_2 == False

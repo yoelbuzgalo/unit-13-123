@@ -59,3 +59,17 @@ def test_streets_street_types():
     # Analysis
     assert len(streets.get_street_types('ABC')) == 2
     assert len(streets.get_street_types('DFG')) == 1
+
+def test_exam_initialization():
+    # Setup
+    name = 'Yoel'
+    total_points = 85
+    total_possible_points = 100
+
+    # Invoke
+    result = practice13_2.Exam(name, total_points, total_possible_points)
+
+    # Analysis
+    assert result.get_name() == name
+    assert result.get_total_points() == total_points
+    assert result.get_total_possible_points() == total_possible_points

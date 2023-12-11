@@ -1,5 +1,7 @@
 import csv
 
+# Part 1 (Streets)
+
 class Street:
     __slots__ = ['__name', '__types', '__direction']
     def __init__(self, name, direction, type=None):
@@ -65,6 +67,26 @@ def parse_streets(filename):
             return streets
     except FileNotFoundError:
         print("Could not find or open:", filename)
+
+
+# Part 3-5 (Exam)
+
+class Exam:
+    __slots__ = ['__name', '__total_points', '__total_possible_points']
+    def __init__(self, name, total_points, total_possible_points):
+        self.__name = name
+        self.__total_points = total_points
+        self.__total_possible_points = total_possible_points
+
+    def get_name(self):
+        return self.__name
+    
+    def get_total_points(self):
+        return self.__total_points
+    
+    def get_total_possible_points(self):
+        return self.__total_possible_points
+
 
 def main():
     streets = parse_streets("./data/streets.csv")

@@ -1,4 +1,7 @@
 import csv
+from node_stack import Stack
+from array_queue import Queue
+import random
 
 # Part 1 (Streets)
 
@@ -121,12 +124,51 @@ class Exam:
     def get_ratio(self):
         return 100 * (self.__total_points / self.__total_possible_points)
 
+def simulate_grading_process():
+    stack_of_exams = Stack()
+    grade_database = Queue()
+    student_names = [
+    "Emily Johnson", "Ethan Parker", "Olivia Martinez", "Liam Carter", "Sophia Adams",
+    "Noah Thompson", "Isabella Rivera", "Mason Wright", "Ava Hall", "Lucas Mitchell",
+    "Mia Garcia", "Oliver Cooper", "Amelia Perez", "Elijah Scott", "Harper King",
+    "James Ramirez", "Charlotte Bennett", "Alexander Reed", "Abigail Turner", "Benjamin Hayes",
+    "Evelyn Flores", "William Ross", "Scarlett Phillips", "Logan Morgan", "Victoria Coleman",
+    "Daniel Wood", "Grace Foster", "Samuel Diaz", "Aria Price", "Henry Ward"
+    ]
+    print("Administering exams:")
+    for name in student_names:
+        random_score = random.randint(0, 100)
+        exam = Exam(name, random_score, 100)
+        stack_of_exams.push(exam)
+        print("\tCompleted:", exam)
+    
+    print("Grading exams:")
+    list_of_graded = Queue()
+    for _ in range(len(stack_of_exams)):
+        grade = stack_of_exams.pop()
+        list_of_graded.enqueue(grade)
+        print("\tGraded:", grade)
 
+    print("Entering grades into grade database")
+    database = list()
+    for _ in range(len(list_of_graded)):
+        grade = list_of_graded.dequeue()
+        database.append(grade)
+        print("\tEntered:", grade)
+    
+    database.sort()
+    database.reverse()
+
+    print("Displaying sorted grades:")
+    for grade in database:
+        print("\t",grade)
+    
 def main():
-    streets = parse_streets("./data/streets.csv")
-    print(streets.count_streets_type('DR'))
-    print(streets.inquire_street('RED LEAF', 'LN'))
-    print(streets.get_street_types('VISTA'))
+    # streets = parse_streets("./data/streets.csv")
+    # print(streets.count_streets_type('DR'))
+    # print(streets.inquire_street('RED LEAF', 'LN'))
+    # print(streets.get_street_types('VISTA'))
+    simulate_grading_process()
 
 
 if __name__ == "__main__":

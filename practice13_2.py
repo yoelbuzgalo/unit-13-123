@@ -72,14 +72,30 @@ def parse_streets(filename):
 # Part 3-5 (Exam)
 
 class Exam:
-    __slots__ = ['__name', '__total_points', '__total_possible_points']
+    exam_count = 0
+    __slots__ = ['__name', '__total_points', '__total_possible_points', '__exam_id']
     def __init__(self, name, total_points, total_possible_points):
         self.__name = name
         self.__total_points = total_points
         self.__total_possible_points = total_possible_points
+        self.__exam_id = Exam.exam_count # Assign current unique exam count identifier to this instance
+        
+        Exam.exam_count += 1 # Increment exam count when an exam is created
 
     def __repr__(self):
         return self.__name + " " + "("+str(self.get_ratio())+")"
+    
+    def __hash__(self):
+        return hash(str(self)+str(self.__exam_id))
+    
+    def __lt__(self, other):
+        if type(self) == type(other):
+            if self.get_ratio() < other.get_ratio():
+                return True
+            elif self.get_ratio() == other.get_ratio():
+                if self.__name < other.get_name():
+                    return True
+        return False
     
     def __eq__(self, other):
         if type(self) == type(other):

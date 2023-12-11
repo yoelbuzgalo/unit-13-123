@@ -106,7 +106,7 @@ def test_exam_repr():
     # Analysis
     assert result == "Yoel (50.0)"
 
-def test_comparison():
+def test_eq_comparison():
     # Setup
     exam_1 = practice13_2.Exam('Yoel', 200, 100)
     exam_2 = practice13_2.Exam('Yoel', 300, 400)
@@ -119,3 +119,18 @@ def test_comparison():
     # Analysis
     assert result_1 == True
     assert result_2 == False
+
+def test_hash_exam():
+    # Setup
+    exam_1 = practice13_2.Exam('Yoel', 50, 100)
+    exam_2 = practice13_2.Exam('Yoel', 50, 100)
+
+    # Invoke
+    result_1 = hash(exam_1)
+    result_2 = hash(exam_2)
+
+
+    # Analysis
+    assert result_1 != result_2
+
+

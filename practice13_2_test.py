@@ -85,3 +85,13 @@ def test_exam_add_points():
     # Analysis
     assert exam.get_total_points() == 100
     assert exam.get_total_possible_points() == 150
+
+def test_exam_ratio():
+    # Setup
+    exam = practice13_2.Exam('Yoel', 500, 1000)
+
+    # Invoke
+    result = exam.get_ratio()
+
+    # Analysis
+    assert result == 50

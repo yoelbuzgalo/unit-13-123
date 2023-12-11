@@ -93,6 +93,9 @@ class Exam:
     def add_total_possible_points(self, points):
         self.__total_possible_points += points
 
+    def get_ratio(self):
+        return 100 * (self.__total_points / self.__total_possible_points)
+
 
 def main():
     streets = parse_streets("./data/streets.csv")

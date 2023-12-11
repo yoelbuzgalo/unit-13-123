@@ -86,6 +86,12 @@ class Exam:
     
     def get_total_possible_points(self):
         return self.__total_possible_points
+    
+    def add_total_points(self, points):
+        self.__total_points += points
+
+    def add_total_possible_points(self, points):
+        self.__total_possible_points += points
 
 
 def main():

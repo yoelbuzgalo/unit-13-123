@@ -73,3 +73,15 @@ def test_exam_initialization():
     assert result.get_name() == name
     assert result.get_total_points() == total_points
     assert result.get_total_possible_points() == total_possible_points
+
+def test_exam_add_points():
+    # Setup
+    exam = practice13_2.Exam('Yoel', 85, 100)
+
+    # Invoke
+    exam.add_total_points(15)
+    exam.add_total_possible_points(50)
+
+    # Analysis
+    assert exam.get_total_points() == 100
+    assert exam.get_total_possible_points() == 150
